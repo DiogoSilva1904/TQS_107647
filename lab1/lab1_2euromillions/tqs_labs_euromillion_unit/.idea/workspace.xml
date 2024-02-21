@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="742b8f6a-9643-40c5-8c2e-f051fa838457" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/tqs_labs_euromillion_unit.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tqs/sets/BoundedSetOfNaturalsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tqs/sets/BoundedSetOfNaturalsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/target/jacoco.exec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/jacoco-sessions.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/jacoco-sessions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/jacoco.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/jacoco.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/jacoco.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/jacoco.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/Dip.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/Dip.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/Dip.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/Dip.java.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/jacoco/tqs.euromillions/index.source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.euromillions.DipTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.euromillions.DipTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.euromillions.EuromillionsDrawTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.euromillions.EuromillionsDrawTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.sets.BoundedSetOfNaturalsTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-tqs.sets.BoundedSetOfNaturalsTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/tqs.euromillions.DipTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/tqs.euromillions.DipTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/tqs.euromillions.EuromillionsDrawTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/tqs.euromillions.EuromillionsDrawTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/tqs.sets.BoundedSetOfNaturalsTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/tqs.sets.BoundedSetOfNaturalsTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tqs/sets/BoundedSetOfNaturalsTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tqs/sets/BoundedSetOfNaturalsTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -28,9 +51,10 @@
     &quot;Maven.euromillions-play [org.jacoco:jacoco-maven-plugin:0.8.8:report].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/diogo/Documentos/TQS/TQS_107647/lab1/lab1_2euromillions/tqs_labs_euromillion_unit&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/diogo/Documentos/novotqs/TQS_107647/lab1/lab1_2euromillions/tqs_labs_euromillion_unit&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -56,6 +80,8 @@
       <updated>1708441728705</updated>
       <workItem from="1708441729756" duration="3162000" />
       <workItem from="1708458270795" duration="2708000" />
+      <workItem from="1708523424132" duration="1327000" />
+      <workItem from="1708525158293" duration="556000" />
     </task>
     <servers />
   </component>

@@ -63,10 +63,4 @@ class BoundedSetOfNaturalsTest {
         assertFalse(setD.intersects(setC));
     }
 
-    @Test
-    public void testEquals() {
-
-    }
-
-
 }
