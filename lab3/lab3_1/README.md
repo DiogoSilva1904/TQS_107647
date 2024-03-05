@@ -1,21 +1,74 @@
-a)
+## A)
 
-assertThat(found).isEqualTo(alex);  A_EmployeeRepositoryTest.java -> line 37
+1. Verifica se o employee encontrado na base de dados, dado o nome, corresponde ao employee correto.
 
-assertThat(fromDb).isNull();  A_EmployeeRepositoryTest.java -> line 38
+```java
+    @Test
+    void whenFindAlexByName_thenReturnAlexEmployee() {
+        Employee alex = new Employee("alex", "alex@deti.com");
+        entityManager.persistAndFlush(alex);
+        Employee found = employeeRepository.findByName(alex.getName());
+        assertThat(found).isEqualTo(alex);
+    }
+```
 
-O uso da biblioteca de asserts, AssertJ é verificada pelo uso de assertThat.
+2. Verifica se o employee encontrado na base de dados é nulo(não existe).
 
-b)
+```java
+@Test
+    void whenInvalidEmployeeName_thenReturnNull() {
+        Employee fromDb = employeeRepository.findByName("Does Not Exist");
+        assertThat(fromDb).isNull();
+    }
+```    
 
-Na situação B é feito mock do repositório, e sendo assim não é usada nenhuma BD pois é o repositório que vai buscar os dados à base de dados.   
-Como não é suposto implementar os serviços(que dão uso do repositorio) e os testes ao mesmo tempo, não é necessário ter uma base de dados para testar os serviços.
-    
+
+3. Verifica se existe algum employee na base de dados com o nome "john".
+
+```java
+@Test
+     void whenValidName_thenEmployeeShouldExist() {
+        boolean doesEmployeeExist = employeeService.exists("john");
+        assertThat(doesEmployeeExist).isTrue();
+
+        verifyFindByNameIsCalledOnce("john");
+    }
+```
+
+
+## B)
+
+No exemplo B é feito mock do repositório(é o repositório que vai buscar os dados à BD e, por isso, não se usa uma base de dados) de nome EmployeeRepository.Este mock é depois injetado nos serviços, EmployeeServiceImpl.
+
+```java
     @Mock( lenient = true)
     private EmployeeRepository employeeRepository;
 
     @InjectMocks
     private EmployeeServiceImpl employeeService; 
-c)
+```
+
+## C)
+    
     @Mock -> cria um mock de uma interface/classe/objeto, que permite simular o seu comportamento sem ser implementado
+    
     @MockBean -> cria um mock de componentes do springboot como o repositório,controller,serviço e permite simular o seu comportamento sem ser implementado. Isto é, subtitui-se um bean real por um mock, apenas para os testes pois, o resto da aplicação continuara a funcionar como o Spring Boot funciona normalmente.
+
+## D)  
+
+application-integrationtest.properties vai ser usado quando forem corridos os testes de integração.É útil pois pode ser usado para especificar uma base de dados que pode ser utilizada para usar nos testes.
+
+```java
+    spring.datasource.url=jdbc:mysql://localhost:33060/tqsdemo
+    spring.jpa.hibernate.ddl-auto=create-drop -> sempre que se correm os testes de integração a base de dados é eliminada e criada.
+    spring.datasource.username=demo
+    spring.datasource.password=demo
+```    
+
+## E)
+
+   C->  usamos a anotação @WebMvcTest para criar uma ambiente de teste simplificado onde é injetado um objeto MockMvc
+
+   D->  é criado um ambiente de teste com @SpringBootTest(webEnvironment = WebEnvironment.MOCK, classes = EmployeeMngrApplication.class) em que não é usado a API
+
+   E->  é carregado todo o contexto do SpringBoot usando @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT).Difere do D pois no E é usado um cliente de API completo.

@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+//lab3_2 - c)
+
 @DataJpaTest
 public class CCarsRepositoryPersistenceTest {
 
