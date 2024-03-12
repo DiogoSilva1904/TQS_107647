@@ -13,7 +13,6 @@ import deti.tqs.Pages.HomePage;
 import  deti.tqs.Pages.ChooseFlight;
 import  deti.tqs.Pages.PurchasePage;
 import  deti.tqs.Pages.ConfirmationPage;
-import static io.github.bonigarcia.seljup.BrowserType.OPERA;
 import static io.github.bonigarcia.seljup.BrowserType.CHROME;
 import static io.github.bonigarcia.seljup.BrowserType.FIREFOX;
 import static io.github.bonigarcia.seljup.BrowserType.EDGE;
@@ -26,7 +25,7 @@ public class PageObjectModelTest {
 
     //change type to test with other browsers
     @Test
-    public void testPageObjectModel(@DockerBrowser(type = OPERA) WebDriver driver) {
+    public void testPageObjectModel(@DockerBrowser(type = EDGE) WebDriver driver) {
         driver.get("https://blazedemo.com");
         HomePage homePage = new HomePage(driver);
         homePage.selecionarFromPort("Boston");
@@ -48,6 +47,6 @@ public class PageObjectModelTest {
         ConfirmationPage confirmationPage = purchasePage.clickButton();
         assertThat(confirmationPage.getText(), is(equalTo("Thank you for your purchase today!")));
         assertThat(confirmationPage.getTittle(), is(equalTo("BlazeDemo Confirmation")));
-        driver.quit();
+        //driver.quit();
     }
 }
