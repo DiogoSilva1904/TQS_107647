@@ -18,3 +18,11 @@ Feature: Book Search
   Scenario: Search for a book by title
     When the user search for a book with the title 'The Hobbit'
     Then the book with the title 'The Hobbit' is found
+
+  Scenario: Search for a book by year
+    When the user search for a book with the year '1954'
+    Then the books with the year '1954' are found
+
+  Scenario: Search for a book by author
+    When the user search for a book with the author 'George Orwell'
+    Then the books with the author 'George Orwell' are found

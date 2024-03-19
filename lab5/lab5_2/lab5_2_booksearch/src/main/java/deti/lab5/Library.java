@@ -32,4 +32,13 @@ public class Library {
     public Book searchBookByTitle(String title) {
         return books.stream().filter(b -> b.getTitle().equals(title)).findFirst().orElse(null);
     }
+
+    public List<Book> findBooks(final Date from, final Date to) {
+        Calendar end = Calendar.getInstance();
+        end.setTime(to);
+
+        return books.stream().filter(book -> {
+            return from.before(book.getPublished()) && end.getTime().after(book.getPublished());
+        }).sorted(Comparator.comparing(Book::getPublished).reversed()).collect(Collectors.toList());
+    }
 }
