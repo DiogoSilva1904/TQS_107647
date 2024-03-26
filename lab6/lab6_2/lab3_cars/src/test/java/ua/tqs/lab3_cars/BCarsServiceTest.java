@@ -52,8 +52,10 @@ public class BCarsServiceTest {
     @Test
     public void testGetCarDetails() {
         Car car = carsService.getCarDetails(1L);
-        assert(car.getMaker()).equals("opel");
-        assert(car.getModel()).equals("corsa");
+        assertThat(car.getMaker()).isEqualTo("opel");
+        assertThat(car.getModel()).isEqualTo("corsa");
+        //assert(car.getMaker()).equals("opel");
+        //assert(car.getModel()).equals("corsa");
     }
 
     @Test
