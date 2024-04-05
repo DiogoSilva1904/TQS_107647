@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Details</title>
+</head>
+<body>
+<h1>Trip Details</h1>
+
+<div>
+    <p>Trip ID: <span th:text="${trip.id}"></span></p>
+    <p>Departure Time: <span th:text="${#temporals.format(trip.departureTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p>Arrival Time: <span th:text="${#temporals.format(trip.arrivalTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p>Price: <span th:text="${trip.price}"></span></p>
+    <p>Origin: <span th:text="${trip.origin}"></span></p>
+    <p>Destination: <span th:text="${trip.destination}"></span></p>
+    <p>Available Seats: <span th:text="${trip.available_seats}"></span></p>
+    <p>Bus Number: <span th:text="${trip.bus_number}"></span></p>
+    <p>Trip Type: <span th:text="${trip.trip_type}"></span></p>
+    <p>Route ID: <span th:text="${trip.route.id}"></span></p>
+
+    <a th:href="@{/reservations/createReservation/{tripId}(tripId=${trip.id})}">
+        <button>Create Reservation</button>
+    </a>
+</div>
+
+
+</body>
+</html>

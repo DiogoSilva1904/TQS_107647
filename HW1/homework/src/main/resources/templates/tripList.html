@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Trips</title>
+</head>
+<body>
+<h1>Available Trips</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Trip ID</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Price</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Available Seats</th>
+        <th>Bus Number</th>
+        <th>Trip Type</th>
+        <th>Action</th> <!-- New column for action button -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through each trip -->
+    <tr th:each="trip : ${trips}">
+        <td th:text="${trip.id}">Trip ID</td>
+        <td th:text="${#temporals.format(trip.departureTime, 'yyyy-MM-dd HH:mm')}">Departure Time</td>
+        <td th:text="${#temporals.format(trip.arrivalTime, 'yyyy-MM-dd HH:mm')}">Arrival Time</td>
+        <td th:text="${trip.price}">Price</td>
+        <td th:text="${trip.origin}">Origin</td>
+        <td th:text="${trip.destination}">Destination</td>
+        <td th:text="${trip.available_seats}">Available Seats</td>
+        <td th:text="${trip.bus_number}">Bus Number</td>
+        <td th:text="${trip.trip_type}">Trip Type</td>
+        <td  th:text="${trip.route}">Route</td>
+        <td>
+            <a th:href="@{/trips/{tripId}(tripId=${trip.id})}">Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+
