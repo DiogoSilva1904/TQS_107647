@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Available Trips</title>
+    <style>
+        /* Style for search boxes */
+        .search-box {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 <h1>Available Trips</h1>
 
-<table border="1">
+<!-- Search boxes -->
+<div>
+    <input type="text" class="search-box" id="origin-box" placeholder="Origin">
+    <input type="text" class="search-box" id="destination-box" placeholder="Destination">
+    <input type="date" class="search-box" id="departure-date" placeholder="Date of Departure">
+    <button onclick="filterTrips()">Search</button>
+</div>
+
+<table border="1" id="trip-table">
     <thead>
     <tr>
         <th>Trip ID</th>
@@ -19,11 +33,10 @@
         <th>Available Seats</th>
         <th>Bus Number</th>
         <th>Trip Type</th>
-        <th>Action</th> <!-- New column for action button -->
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through each trip -->
     <tr th:each="trip : ${trips}">
         <td th:text="${trip.id}">Trip ID</td>
         <td th:text="${#temporals.format(trip.departureTime, 'yyyy-MM-dd HH:mm')}">Departure Time</td>
@@ -34,14 +47,48 @@
         <td th:text="${trip.available_seats}">Available Seats</td>
         <td th:text="${trip.bus_number}">Bus Number</td>
         <td th:text="${trip.trip_type}">Trip Type</td>
-        <td  th:text="${trip.route}">Route</td>
         <td>
-            <a th:href="@{/trips/{tripId}(tripId=${trip.id})}">Details</a>
+            <a th:href="@{/trips/trip/{tripId}(tripId=${trip.id})}">Details</a>
         </td>
     </tr>
     </tbody>
 </table>
+
+<script>
+    function filterTrips() {
+        var originInput, destinationInput, departureDateInput, origin, destination, departureDate, table, tr, i;
+        originInput = document.getElementById("origin-box");
+        destinationInput = document.getElementById("destination-box");
+        departureDateInput = document.getElementById("departure-date");
+        origin = originInput.value.toUpperCase();
+        destination = destinationInput.value.toUpperCase();
+        departureDate = departureDateInput.value;
+        table = document.getElementById("trip-table");
+        trip = table.getElementsByTagName("tr");
+        for (i = 0; i < trip.length; i++) {
+            tdOrigin = trip[i].getElementsByTagName("td")[4];
+            tdDestination = trip[i].getElementsByTagName("td")[5];
+            tdDepartureDate = trip[i].getElementsByTagName("td")[1];
+            if (tdOrigin && tdDestination && tdDepartureDate) {
+                txtOrigin = tdOrigin.textContent || tdOrigin.innerText;
+                txtDestination = tdDestination.textContent || tdDestination.innerText;
+                txtDepartureDate = tdDepartureDate.textContent || tdDepartureDate.innerText;
+                var datePart = txtDepartureDate.split(" ")[0];
+                if ((origin === '' || txtOrigin.toUpperCase().indexOf(origin) > -1) &&
+                    (destination === '' || txtDestination.toUpperCase().indexOf(destination) > -1) &&
+                    (departureDate === '' || datePart === departureDate)) {
+                    trip[i].style.display = "";
+                } else {
+                    trip[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 </body>
 </html>
+
+
 
 

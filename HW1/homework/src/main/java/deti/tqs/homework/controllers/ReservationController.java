@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -44,7 +45,7 @@ public class ReservationController {
             }
 
             @GetMapping("/confirmation/{reservation_id}")
-            public ModelAndView confirmationPage(@PathVariable Long reservation_id) {
+            public ModelAndView confirmationPage(@PathVariable UUID reservation_id) {
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.addObject("reservation", reservationService.getReservationById(reservation_id));
                 modelAndView.setViewName("confirmation");
@@ -60,7 +61,7 @@ public class ReservationController {
             }
 
             @GetMapping("/{id}")
-            public ResponseEntity<Reservation> getReservationById(@PathVariable Long id) {
+            public ResponseEntity<Reservation> getReservationById(@PathVariable UUID id) {
                 Reservation reservation = reservationService.getReservationById(id);
                 return reservation != null ? ResponseEntity.ok(reservation) : ResponseEntity.notFound().build();
             }
@@ -68,11 +69,5 @@ public class ReservationController {
             @GetMapping
             public ResponseEntity<List<Reservation>> getAllReservations() {
                 return ResponseEntity.ok(reservationService.getAllReservations());
-            }
-
-            @DeleteMapping("/{id}")
-            public ResponseEntity<Void> deleteReservationById(@PathVariable Long id) {
-                reservationService.deleteReservationById(id);
-                return ResponseEntity.noContent().build();
             }
 }

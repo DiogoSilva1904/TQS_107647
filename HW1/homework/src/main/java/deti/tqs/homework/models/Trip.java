@@ -30,7 +30,7 @@ public class Trip {
 
     private LocalDateTime departureTime;
 
-    private Long price;
+    private Double price;
 
     @ManyToOne
     @JsonIgnoreProperties({"stops","trips"})

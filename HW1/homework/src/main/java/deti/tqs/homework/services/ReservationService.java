@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import deti.tqs.homework.repositories.ReservationRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReservationService {
@@ -19,15 +20,12 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    public Reservation getReservationById(Long id) {
-        return reservationRepository.findById(id).orElse(null);
+    public Reservation getReservationById(UUID id) {
+        return reservationRepository.findById(id);
     }
 
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
 
-    public void deleteReservationById(Long id) {
-        reservationRepository.deleteById(id);
-    }
 }

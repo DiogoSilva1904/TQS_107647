@@ -33,6 +33,7 @@ public class StopController {
                 return stop != null ? ResponseEntity.ok(stop) : ResponseEntity.notFound().build();
             }
 
+
             @DeleteMapping("/{id}")
             public ResponseEntity<Void> deleteStopById(@PathVariable Long id) {
                 stopService.deleteStopById(id);
