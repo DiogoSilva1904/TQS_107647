@@ -30,5 +30,5 @@ public interface TripRepository extends JpaRepository<Trip, Long>{
 
     List<Trip> findByDepartureTime(LocalDateTime departureTime);
 
-
+    List<Trip> findByAvailableSeats(int availableSeats);
 }

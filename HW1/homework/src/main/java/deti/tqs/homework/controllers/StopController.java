@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/stop")
+@RequestMapping("/stops")
 public class StopController {
 
             private final StopService stopService;

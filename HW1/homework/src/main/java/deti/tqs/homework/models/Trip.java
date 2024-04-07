@@ -36,7 +36,7 @@ public class Trip {
     @JsonIgnoreProperties({"stops","trips"})
     private Route route;
 
-    private int available_seats;
+    private int availableSeats;
 
 
     private String bus_number;

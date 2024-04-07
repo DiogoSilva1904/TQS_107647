@@ -1,5 +1,6 @@
 package deti.tqs.homework.services;
 
+import deti.tqs.homework.models.Route;
 import org.springframework.stereotype.Service;
 
 import deti.tqs.homework.models.Stop;
@@ -29,5 +30,9 @@ public class StopService {
 
     public List<Stop> getAllStops() {
         return stopRepository.findAll();
+    }
+
+    public List<Stop> getStopsByRoute(Route route) {
+        return stopRepository.findByRoute(route);
     }
 }

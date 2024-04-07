@@ -29,19 +29,34 @@ public class ReservationController {
                                                 @RequestParam("userEmail") String userEmail,
                                                 @RequestParam("userName") String userName,
                                                 @RequestParam("nif") Integer nif) {
-                Reservation reservation = new Reservation();
-                Trip trip = tripService.getTripById(tripId);
-                reservation.setTrip(trip);
-                reservation.setSeat(seat);
-                reservation.setName(userName);
-                reservation.setEmail(userEmail);
-                reservation.setNif(nif);
-                reservationService.saveReservation(reservation);
-                ModelAndView modelAndView = new ModelAndView();
-                modelAndView.setViewName("redirect:/reservations/confirmation/"+ reservation.getId());
-                modelAndView.addObject("reservation", reservation);
-                System.out.println("Reservation saved" + reservation);
-                return modelAndView;
+                try{
+                    Trip trip = tripService.getTripById(tripId);
+                    Reservation reservation = new Reservation();
+                    reservation.setTrip(trip);
+                    reservation.setSeat(seat);
+                    reservation.setName(userName);
+                    reservation.setEmail(userEmail);
+                    reservation.setNif(nif);
+                    reservationService.saveReservation(reservation);
+                    ModelAndView modelAndView = new ModelAndView();
+                    modelAndView.setViewName("redirect:/reservations/confirmation/"+ reservation.getId());
+                    modelAndView.addObject("reservation", reservation);
+                    System.out.println("Reservation saved" + reservation);
+                    return modelAndView;
+                } catch (IllegalArgumentException e) {
+                    return new ModelAndView("redirect:/reservations/createReservation/"+ tripId);
+                }
+            }
+
+            @PostMapping("/save")
+            public ResponseEntity<Reservation> saveReservation(@RequestBody Reservation reservation) {
+                try {
+                    Trip trip = tripService.getTripById(reservation.getTrip().getId());
+                    reservation.setTrip(trip);
+                    return new ResponseEntity<>(reservationService.saveReservation(reservation), HttpStatus.CREATED);
+                } catch (IllegalArgumentException e) {
+                    return ResponseEntity.badRequest().build();
+                }
             }
 
             @GetMapping("/confirmation/{reservation_id}")

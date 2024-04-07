@@ -48,16 +48,12 @@ public class TripService {
         return tripRepository.findByOriginAndDestinationAndDepartureTime(origin, destination, departureTime);
     }
 
-    public List<Trip> getTripsByOriginAndDepartureTime(String origin, LocalDateTime departureTime) {
-        return tripRepository.findByOriginAndDepartureTime(origin, departureTime);
-    }
-
-    public List<Trip> getTripsByDestinationAndDepartureTime(String destination, LocalDateTime departureTime) {
-        return tripRepository.findByDestinationAndDepartureTime(destination, departureTime);
-    }
-
     public List<Trip> getTripsByDepartureTime(LocalDateTime departureTime) {
         return tripRepository.findByDepartureTime(departureTime);
+    }
+
+    public List<Trip> getTripsByAvailableSeats(int availableSeats) {
+        return tripRepository.findByAvailableSeats(availableSeats);
     }
 
 

@@ -1,5 +1,7 @@
 package deti.tqs.homework.services;
 
+import deti.tqs.homework.models.Stop;
+import deti.tqs.homework.models.Trip;
 import org.springframework.stereotype.Service;
 
 import deti.tqs.homework.models.Route;
@@ -30,4 +32,7 @@ public class RouteService {
     public void deleteRouteById(Long id) {
         routeRepository.deleteById(id);
     }
+
+
+
 }

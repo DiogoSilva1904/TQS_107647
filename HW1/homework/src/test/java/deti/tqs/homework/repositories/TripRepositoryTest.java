@@ -32,6 +32,7 @@ public class TripRepositoryTest {
     @Autowired
     StopRepository stopRepository;
 
+
     Route route1,route2;
     Trip trip1,trip2,trip3,trip4;
     @BeforeEach
@@ -73,20 +74,24 @@ public class TripRepositoryTest {
         trip1.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip1.setRoute(route1);
         trip1.setTrip_type("IDA");
+        trip1.setAvailableSeats(0);
         trip2.setArrivalTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip2.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip2.setRoute(route1);
         trip2.setTrip_type("IDA/VOLTA");
+        trip2.setAvailableSeats(30);
         trip3.setArrivalTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip3.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip3.setRoute(route2);
         trip3.setTrip_type("IDA");
+        trip3.setAvailableSeats(0);
         trip4.setArrivalTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip4.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         trip4.setRoute(route2);
         trip4.setOrigin("Aveiro");
         trip4.setDestination("Lisboa");
         trip4.setTrip_type("IDA/VOLTA");
+        trip4.setAvailableSeats(10);
         entityManager.persist(trip1);
         entityManager.persist(trip2);
         entityManager.persist(trip3);
@@ -121,6 +126,11 @@ public class TripRepositoryTest {
     @Test
     void whenFindByOriginAndDestination_thenReturnTrips() {
         assert tripRepository.findByOriginAndDestination("Aveiro", "Lisboa").size() == 1;
+    }
+
+    @Test
+    void whenFindByAvailableSears_thenReturnTrips(){
+        assert tripRepository.findByAvailableSeats(0).size() == 2;
     }
 
 }

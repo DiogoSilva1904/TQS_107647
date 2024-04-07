@@ -17,7 +17,12 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
 
     public Reservation saveReservation(Reservation reservation) {
-        return reservationRepository.save(reservation);
+        if (reservation.getTrip().getAvailableSeats()==0) {
+            throw new IllegalArgumentException("No available seats for this trip");
+        }
+        else{
+            return reservationRepository.save(reservation);
+        }
     }
 
     public Reservation getReservationById(UUID id) {
