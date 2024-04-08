@@ -1,5 +1,8 @@
 package deti.tqs.homework.controllers;
 
+import java.lang.invoke.MethodHandles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import deti.tqs.homework.models.Route;
 import deti.tqs.homework.models.Stop;
 import deti.tqs.homework.services.RouteService;
@@ -20,8 +23,11 @@ public class StopController {
 
             private final RouteService routeService;
 
+            private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().getClass());
+
             @PostMapping
             public ResponseEntity<Stop> saveStop(@RequestBody Stop stop) {
+                logger.info("Saving stop");
                 Route route = routeService.getRouteById(stop.getRoute().getId());
                 stop.setRoute(route);
                 return ResponseEntity.status(HttpStatus.CREATED).body(stopService.saveStop(stop));
@@ -29,6 +35,7 @@ public class StopController {
 
             @GetMapping("/{id}")
             public ResponseEntity<Stop> getStopById(@PathVariable Long id) {
+                logger.info("Getting stop by id");
                 Stop stop = stopService.getStopById(id);
                 return stop != null ? ResponseEntity.ok(stop) : ResponseEntity.notFound().build();
             }
@@ -36,12 +43,14 @@ public class StopController {
 
             @DeleteMapping("/{id}")
             public ResponseEntity<Void> deleteStopById(@PathVariable Long id) {
+                logger.info("Deleting stop by id");
                 stopService.deleteStopById(id);
                 return ResponseEntity.noContent().build();
             }
 
             @GetMapping
             public ResponseEntity<List<Stop>> getAllStops() {
+                logger.info("Getting all stops");
                 return ResponseEntity.ok(stopService.getAllStops());
             }
 }

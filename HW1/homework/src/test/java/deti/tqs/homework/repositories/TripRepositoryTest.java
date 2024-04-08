@@ -62,11 +62,7 @@ public class TripRepositoryTest {
         trip3 = new Trip();
         trip4 = new Trip();
         stopRepository.save(stop1);
-        route1.setArrivalTime(LocalDateTime.parse("2021-12-12T12:00:00"));
-        route1.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         route1.setStops(new ArrayList<>(Arrays.asList(stop1, stop2, stop3)));
-        route2.setArrivalTime(LocalDateTime.parse("2021-12-12T12:00:00"));
-        route2.setDepartureTime(LocalDateTime.parse("2021-12-12T12:00:00"));
         route2.setStops(new ArrayList<>(Arrays.asList(stop6, stop5,stop4)));
         entityManager.persistAndFlush(route1);
         entityManager.persistAndFlush(route2);

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Available Trips</title>
+    <link rel="stylesheet" href="tripList.css">
     <style>
-        /* Style for search boxes */
         .search-box {
             margin-bottom: 10px;
         }
@@ -13,7 +13,6 @@
 <body>
 <h1>Available Trips</h1>
 
-<!-- Search boxes -->
 <div>
     <input type="text" class="search-box" id="origin-box" placeholder="Origin">
     <input type="text" class="search-box" id="destination-box" placeholder="Destination">
@@ -24,7 +23,6 @@
 <table border="1" id="trip-table">
     <thead>
     <tr>
-        <th>Trip ID</th>
         <th>Departure Time</th>
         <th>Arrival Time</th>
         <th>Price</th>
@@ -38,13 +36,12 @@
     </thead>
     <tbody>
     <tr th:each="trip : ${trips}">
-        <td th:text="${trip.id}">Trip ID</td>
         <td th:text="${#temporals.format(trip.departureTime, 'yyyy-MM-dd HH:mm')}">Departure Time</td>
         <td th:text="${#temporals.format(trip.arrivalTime, 'yyyy-MM-dd HH:mm')}">Arrival Time</td>
         <td th:text="${trip.price}">Price</td>
         <td th:text="${trip.origin}">Origin</td>
         <td th:text="${trip.destination}">Destination</td>
-        <td th:text="${trip.available_seats}">Available Seats</td>
+        <td th:text="${trip.availableSeats}">Available Seats</td>
         <td th:text="${trip.bus_number}">Bus Number</td>
         <td th:text="${trip.trip_type}">Trip Type</td>
         <td>
@@ -66,9 +63,9 @@
         table = document.getElementById("trip-table");
         trip = table.getElementsByTagName("tr");
         for (i = 0; i < trip.length; i++) {
-            tdOrigin = trip[i].getElementsByTagName("td")[4];
-            tdDestination = trip[i].getElementsByTagName("td")[5];
-            tdDepartureDate = trip[i].getElementsByTagName("td")[1];
+            tdOrigin = trip[i].getElementsByTagName("td")[3];
+            tdDestination = trip[i].getElementsByTagName("td")[4];
+            tdDepartureDate = trip[i].getElementsByTagName("td")[0];
             if (tdOrigin && tdDestination && tdDepartureDate) {
                 txtOrigin = tdOrigin.textContent || tdOrigin.innerText;
                 txtDestination = tdDestination.textContent || tdDestination.innerText;

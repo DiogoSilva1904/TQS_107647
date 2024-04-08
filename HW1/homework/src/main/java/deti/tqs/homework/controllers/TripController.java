@@ -1,5 +1,8 @@
 package deti.tqs.homework.controllers;
 
+import java.lang.invoke.MethodHandles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import deti.tqs.homework.models.Trip;
 import deti.tqs.homework.services.RouteService;
 import deti.tqs.homework.services.TripService;
@@ -22,9 +25,12 @@ public class TripController {
 
     private final RouteService routeService;
 
+    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().getClass());
+
 
     @PostMapping
     public ResponseEntity<Trip> saveTrip(@RequestBody Trip trip) {
+        logger.info("Saving trip");
         trip.setRoute(routeService.getRouteById(trip.getRoute().getId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(tripService.saveTrip(trip));
 
@@ -32,6 +38,7 @@ public class TripController {
 
     @GetMapping("/trip/{id}")
     public ModelAndView getTripById(@PathVariable Long id) {
+        logger.info("Getting trip by id and showing the page with the details of the trip");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("trip", tripService.getTripById(id));
         //ordenar stops aqui(ver depois)
@@ -41,25 +48,29 @@ public class TripController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Trip> getTripsById(@PathVariable Long id) {
+        logger.info("Getting trip by id");
         return ResponseEntity.ok(tripService.getTripById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTripById(@PathVariable Long id) {
+        logger.info("Deleting trip by id");
         tripService.deleteTripById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
     public ModelAndView getAllTrips() {
+        logger.info("Getting all trips and showing page with all trips");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("trips", tripService.getAllTrips());
-        modelAndView.setViewName("tripList"); // assuming you have a "trips.html" Thymeleaf template
+        modelAndView.setViewName("tripList");
         return modelAndView;
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Trip>> getTrips() {
+        logger.info("Getting all trips");
         return ResponseEntity.ok(tripService.getAllTrips());
     }
 
@@ -68,7 +79,7 @@ public class TripController {
             @RequestParam(name = "from") Optional<String> from,
             @RequestParam(name = "to") Optional<String> to,
             @RequestParam(name = "departureTime") Optional<LocalDateTime> departureTime) {
-
+        logger.info("Getting trips by origin, destination and departure time");
         if (from.isPresent() && to.isPresent() && departureTime.isPresent()) {
             return ResponseEntity.ok(tripService.getTripsByOriginAndDestinationAndDepartureTime(from.get(), to.get(), departureTime.get()));
         } else if (from.isPresent() && to.isPresent()) {

@@ -51,18 +51,12 @@ public class RouteRepositoryTest {
                 entityManager.persistAndFlush(trip1);
                 entityManager.persistAndFlush(trip2);
                 route1 = new Route();
-                route1.setArrivalTime(LocalDateTime.parse("2021-05-01T08:00:00"));
-                route1.setDepartureTime(LocalDateTime.parse("2021-05-01T07:00:00"));
                 route1.setStops(List.of(stop1, stop2));
                 route1.setTrips(List.of(trip1, trip2));
                 route2 = new Route();
-                route2.setArrivalTime(LocalDateTime.parse("2021-05-01T09:00:00"));
-                route2.setDepartureTime(LocalDateTime.parse("2021-05-01T08:00:00"));
                 route2.setStops(List.of( stop2));
                 route2.setTrips(List.of(trip1));
                 route3 = new Route();
-                route3.setArrivalTime(LocalDateTime.parse("2021-05-01T10:00:00"));
-                route3.setDepartureTime(LocalDateTime.parse("2021-05-01T09:00:00"));
                 route3.setStops(List.of(stop1, stop2));
                 route3.setTrips(List.of(trip2));
                 entityManager.persistAndFlush(route1);

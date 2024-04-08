@@ -1,5 +1,8 @@
 package deti.tqs.homework.controllers;
 
+import java.lang.invoke.MethodHandles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import deti.tqs.homework.models.Route;
 import deti.tqs.homework.services.RouteService;
 import lombok.AllArgsConstructor;
@@ -16,24 +19,30 @@ public class RouteController {
 
         private final RouteService routeService;
 
+        private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().getClass());
+
         @PostMapping
         public ResponseEntity<Route> saveRoute(@RequestBody Route route) {
+            logger.info("Saving route");
             return ResponseEntity.status(HttpStatus.CREATED).body(routeService.saveRoute(route));
         }
 
         @GetMapping("/{id}")
         public ResponseEntity<Route> getRouteById(@PathVariable Long id) {
+            logger.info("Getting route by id");
             Route route = routeService.getRouteById(id);
             return route != null ? ResponseEntity.ok(route) : ResponseEntity.notFound().build();
         }
 
         @GetMapping
         public ResponseEntity<List<Route>> getAllRoutes() {
+            logger.info("Getting all routes");
             return ResponseEntity.ok(routeService.getAllRoutes());
         }
 
         @DeleteMapping("/{id}")
         public ResponseEntity<Void> deleteRouteById(@PathVariable Long id) {
+            logger.info("Deleting route by id");
             routeService.deleteRouteById(id);
             return ResponseEntity.noContent().build();
         }

@@ -73,13 +73,9 @@ public class RouteServiceTest {
         trip3.setAvailableSeats(30);
 
         route1 = new Route();
-        route1.setArrivalTime(LocalDateTime.parse("2024-05-06T12:30:00"));
-        route1.setDepartureTime(LocalDateTime.parse("2024-05-06T08:00:00"));
         route1.setStops(Arrays.asList(stop1, stop2, stop3));
         route1.setTrips(Arrays.asList(trip1, trip2));
         route2 = new Route();
-        route2.setArrivalTime(LocalDateTime.parse("2024-05-06T12:30:00"));
-        route2.setDepartureTime(LocalDateTime.parse("2024-05-06T08:00:00"));
         route2.setStops(Arrays.asList(stop4, stop5));
         route2.setTrips(Collections.singletonList(trip3));
     }

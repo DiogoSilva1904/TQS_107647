@@ -42,6 +42,7 @@ public class Trip {
     private String bus_number;
 
     @OneToMany(mappedBy = "trip")
+    @JsonIgnoreProperties(value = {"trip"},allowSetters = true)
     private List<Reservation> reservations;
 
     @Column(nullable = false)

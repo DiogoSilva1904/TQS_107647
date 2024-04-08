@@ -89,13 +89,9 @@ public class RouteControllerTest {
         trip2 = new Trip();
         trip2.setTrip_type("IDA/VOLTA");
         route1 = new Route();
-        route1.setArrivalTime(LocalDateTime.parse("2021-05-01T08:00:00"));
-        route1.setDepartureTime(LocalDateTime.parse("2021-05-01T07:00:00"));
         route1.setStops(Arrays.asList(stop1, stop2, stop3, stop4, stop5));
         route1.setTrips(Arrays.asList(trip1, trip2));
         route2 = new Route();
-        route2.setArrivalTime(LocalDateTime.parse("2021-05-01T09:00:00"));
-        route2.setDepartureTime(LocalDateTime.parse("2021-05-01T08:00:00"));
         route2.setStops(Arrays.asList(stop6, stop7, stop8, stop9, stop10));
         route2.setTrips(Arrays.asList(trip1, trip2));
     }
@@ -106,9 +102,7 @@ public class RouteControllerTest {
 
         mockMvc.perform(get("/routes"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].arrivalTime", is("2021-05-01T08:00:00")))
-                .andExpect(jsonPath("$[0].departureTime", is("2021-05-01T07:00:00")));
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
     @Test
@@ -116,9 +110,7 @@ public class RouteControllerTest {
         when(routeService.getRouteById(1L)).thenReturn(route1);
 
         mockMvc.perform(get("/routes/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.arrivalTime", is("2021-05-01T08:00:00")))
-                .andExpect(jsonPath("$.departureTime", is("2021-05-01T07:00:00")));
+                .andExpect(status().isOk());
     }
 
 }

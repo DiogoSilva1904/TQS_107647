@@ -82,12 +82,8 @@ public class StopControllerTest {
         stop10.setName("Viseu");
         stop10.setStopOrder(5);
         route1 = new Route();
-        route1.setDepartureTime(LocalDateTime.parse("2024-05-09T12:00:00"));
-        route1.setArrivalTime(LocalDateTime.parse("2024-05-09T14:00:00"));
         route1.setStops(Arrays.asList(stop1,stop2,stop3,stop4,stop5));
         route2 = new Route();
-        route2.setDepartureTime(LocalDateTime.parse("2024-06-10T12:00:00"));
-        route2.setArrivalTime(LocalDateTime.parse("2024-06-10T18:00:00"));
         route2.setStops(Arrays.asList(stop6,stop7,stop8,stop9,stop10));
         when(stopService.getStopById(1L)).thenReturn(stop1);
         when(stopService.getAllStops()).thenReturn(Arrays.asList(stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,stop10));

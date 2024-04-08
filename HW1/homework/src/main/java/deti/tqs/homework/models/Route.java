@@ -23,11 +23,6 @@ public class Route {
     private Long id;
 
 
-    private LocalDateTime departureTime;
-
-    private LocalDateTime arrivalTime;
-
-
     @OneToMany(mappedBy = "route")
     private List<Stop> stops = new ArrayList<>();
 
