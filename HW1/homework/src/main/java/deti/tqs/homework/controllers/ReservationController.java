@@ -1,5 +1,7 @@
 package deti.tqs.homework.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.lang.invoke.MethodHandles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/reservations")
+@Tag(name = "Reservation API", description = "Endpoints for managing reservations")
 public class ReservationController {
 
             private final ReservationService reservationService;
@@ -27,6 +30,7 @@ public class ReservationController {
             private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().getClass());
 
             @PostMapping
+            @Operation(summary = "Save a reservation", description = "Save a reservation with check if trip has any available seats and redirects to the confirmation page")
             public ModelAndView saveReservation(@RequestParam("tripId") Long tripId,
                                                 @RequestParam("seat") String seat,
                                                 @RequestParam("userEmail") String userEmail,
@@ -54,6 +58,7 @@ public class ReservationController {
             }
 
             @PostMapping("/save")
+            @Operation(summary = "Save a reservation", description = "Save a reservation with check if trip has any available seats")
             public ResponseEntity<Reservation> saveReservation(@RequestBody Reservation reservation) {
                 try {
                     logger.info("Saving reservation and checking if trip as any available seats");
@@ -67,6 +72,7 @@ public class ReservationController {
             }
 
             @GetMapping("/confirmation/{reservation_id}")
+            @Operation(summary = "Show confirmation page", description = "Show confirmation page for a reservation")
             public ModelAndView confirmationPage(@PathVariable UUID reservation_id) {
                 logger.info("Showing confirmation page");
                 ModelAndView modelAndView = new ModelAndView();
@@ -76,6 +82,7 @@ public class ReservationController {
             }
 
             @GetMapping("/createReservation/{tripId}")
+            @Operation(summary = "Show create reservation page", description = "Show create reservation page on which the user can create a reservation for a trip")
             public ModelAndView createReservationPage(@PathVariable Long tripId) {
                 logger.info("Showing create reservation page");
                 ModelAndView modelAndView = new ModelAndView();
@@ -85,6 +92,7 @@ public class ReservationController {
             }
 
             @GetMapping("/{id}")
+            @Operation(summary = "Get reservation by id", description = "Get reservation by id")
             public ResponseEntity<Reservation> getReservationById(@PathVariable UUID id) {
                 logger.info("Getting reservation by id");
                 Reservation reservation = reservationService.getReservationById(id);
@@ -92,6 +100,7 @@ public class ReservationController {
             }
 
             @GetMapping
+            @Operation(summary = "Get all reservations", description = "Get all reservations")
             public ResponseEntity<List<Reservation>> getAllReservations() {
                 logger.info("Getting all reservations");
                 return ResponseEntity.ok(reservationService.getAllReservations());

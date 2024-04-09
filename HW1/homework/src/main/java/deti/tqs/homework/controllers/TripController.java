@@ -1,5 +1,7 @@
 package deti.tqs.homework.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.lang.invoke.MethodHandles;
 
 import deti.tqs.homework.models.Route;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/trips")
+@Tag(name = "Trip API", description = "Endpoints for managing trips")
 public class TripController {
 
     private final TripService tripService;
@@ -34,6 +37,7 @@ public class TripController {
 
 
     @PostMapping
+    @Operation(summary = "Save a trip", description = "Save a trip")
     public ResponseEntity<Trip> saveTrip(@RequestBody Trip trip) {
         logger.info("Saving trip");
         trip.setRoute(routeService.getRouteById(trip.getRoute().getId()));
@@ -42,6 +46,7 @@ public class TripController {
     }
 
     @GetMapping("/trip/{id}")
+    @Operation(summary = "Get a trip by id", description = "Get a trip by id and load details page of the trip")
     public ModelAndView getTripById(@PathVariable Long id) {
         logger.info("Getting trip by id and showing the page with the details of the trip");
         ModelAndView modelAndView = new ModelAndView();
@@ -58,12 +63,14 @@ public class TripController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get a trip by id", description = "Get a trip by id")
     public ResponseEntity<Trip> getTripsById(@PathVariable Long id) {
         logger.info("Getting trip by id");
         return ResponseEntity.ok(tripService.getTripById(id));
     }
 
     @GetMapping
+    @Operation(summary = "Get all trips", description = "Get all trips and load page with all trips")
     public ModelAndView getAllTrips() {
         logger.info("Getting all trips and showing page with all trips");
         ModelAndView modelAndView = new ModelAndView();
@@ -73,12 +80,14 @@ public class TripController {
     }
 
     @GetMapping("/all")
+    @Operation(summary = "Get all trips", description = "Get all trips")
     public ResponseEntity<List<Trip>> getTrips() {
         logger.info("Getting all trips");
         return ResponseEntity.ok(tripService.getAllTrips());
     }
 
     @GetMapping("/search")
+    @Operation(summary = "Get trips by different parameters", description = "Get trips by origin, destination and departure time")
     public ResponseEntity<List<Trip>> getTrips(
             @RequestParam(name = "from") Optional<String> from,
             @RequestParam(name = "to") Optional<String> to,
