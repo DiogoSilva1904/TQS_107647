@@ -1,6 +1,5 @@
 package deti.tqs.homework.controllers;
 
-import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -11,11 +10,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+
 import java.util.Arrays;
-import java.util.UUID;
 
 import deti.tqs.homework.models.Route;
 import deti.tqs.homework.models.Stop;
@@ -25,15 +21,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import deti.tqs.homework.models.Reservation;
-import deti.tqs.homework.services.ReservationService;
-import deti.tqs.homework.controllers.TestUtils;
 
 @WebMvcTest(StopController.class)
 public class StopControllerTest {
@@ -103,5 +95,18 @@ public class StopControllerTest {
         mockMvc.perform(get("/stops"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(10)));
+    }
+
+    @Test
+    public void testSaveStop() throws Exception {
+        stop1.setRoute(route1);
+        when(stopService.saveStop(any(Stop.class))).thenReturn(stop1);
+        mockMvc.perform(post("/stops")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtils.toJson(stop1)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name", is("Aveiro")))
+                .andExpect(jsonPath("$.stopOrder", is(1)));
+        verify(stopService).saveStop(any(Stop.class));
     }
 }

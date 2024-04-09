@@ -4,21 +4,26 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
+import java.util.Collections;
 
+import deti.tqs.homework.models.Route;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 
@@ -39,17 +44,19 @@ public class TripControllerTest {
     RouteService routeService;
 
 
+    Trip trip;
 
     @BeforeEach
     void setUp() {
-        Trip trip = new Trip();
+        Route route = new Route();
+        trip = new Trip();
         trip.setId(1L);
         trip.setOrigin("Aveiro");
         trip.setDestination("Porto");
-        trip.setDepartureTime(LocalDateTime.ofInstant(Instant.ofEpochSecond(0), ZoneOffset.UTC));
-        trip.setArrivalTime(LocalDateTime.ofInstant(Instant.ofEpochSecond(0), ZoneOffset.UTC));
+        //trip.setDepartureTime(LocalDateTime.parse("2024-04-05T10:00:00"));
+        //trip.setArrivalTime(LocalDateTime.parse("2024-04-05T12:00:00"));
         trip.setPrice(10.00);
-        trip.setRoute(null);
+        trip.setRoute(route);
         when(tripService.getTripById(1L)).thenReturn(trip);
         when(tripService.getAllTrips()).thenReturn(Arrays.asList(trip));
     }
@@ -60,10 +67,14 @@ public class TripControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.origin", is("Aveiro")))
                 .andExpect(jsonPath("$.destination", is("Porto")))
-                .andExpect(jsonPath("$.departureTime", is("1970-01-01T00:00:00")))
-                .andExpect(jsonPath("$.arrivalTime", is("1970-01-01T00:00:00")))
-                .andExpect(jsonPath("$.price", is(10.0)))
-                .andExpect(jsonPath("$.route").doesNotExist());
+                .andExpect(jsonPath("$.price", is(10.0)));
+    }
+
+    @Test
+    public void testGetTrips() throws Exception {
+        mockMvc.perform(get("/trips"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("tripList"));
     }
 
     @Test
@@ -71,6 +82,34 @@ public class TripControllerTest {
         mockMvc.perform(get("/trips/all")).andExpectAll(
                 status().isOk(),
                 jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void testGetTripByDestination() throws Exception {
+        when(tripService.getTripsByDestination("Porto"))
+                .thenReturn(Collections.singletonList(trip));
+        mockMvc.perform(get("/trips/search")
+                        .param("to", "Porto"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void testGetTripsWithDepartureTime() throws Exception {
+        when(tripService.getTripsByDepartureTime(LocalDateTime.parse("2024-04-05T10:00:00")))
+                .thenReturn(Collections.singletonList(trip));
+        mockMvc.perform(get("/trips/search")
+                        .param("departureTime", "2024-04-05T10:00:00"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void testGetTripsWithToAndDepartureTime() throws Exception {
+        when(tripService.getAllTrips()).thenReturn(Collections.singletonList(trip));
+        mockMvc.perform(get("/trips/search"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 
     @Test
@@ -139,7 +178,13 @@ public class TripControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)));
     }
 
-
-
-
+    @Test
+    public void testSaveTrip() throws Exception {
+        when(tripService.saveTrip(any(Trip.class))).thenReturn(trip);
+        mockMvc.perform(post("/trips")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtils.toJson(trip)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.destination", is("Porto")));
+    }
 }

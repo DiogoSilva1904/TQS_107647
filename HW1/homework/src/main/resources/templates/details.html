@@ -3,7 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Trip Details</title>
-    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="../static/details.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .trip-details {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .trip-details p {
+            margin: 10px 0;
+        }
+
+        .create-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .create-button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+    </style>
 </head>
 <body>
 <h1>Trip Details</h1>
@@ -19,7 +90,22 @@
     <p>Trip Type: <span th:text="${trip.trip_type}"></span></p>
     <p>Route ID: <span th:text="${trip.route.id}"></span></p>
 
-    <a th:href="@{/reservations/createReservation/{tripId}(tripId=${trip.id})}">
+    <table>
+        <thead>
+        <tr>
+            <th>Stop Name</th>
+            <th>Stop Order</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="stop, i : ${stops}">
+            <td th:text="${stop.name}"></td>
+            <td th:text="${stop.stopOrder}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a id="create-button" th:href="@{/reservations/createReservation/{tripId}(tripId=${trip.id})}">
         <button>Create Reservation</button>
     </a>
 </div>

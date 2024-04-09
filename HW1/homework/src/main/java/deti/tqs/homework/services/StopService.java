@@ -19,6 +19,9 @@ public class StopService {
     @Autowired
     private StopRepository stopRepository;
 
+    @Autowired
+    private RouteService routeRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().getClass());
 
     public Stop saveStop(Stop stop) {

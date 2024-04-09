@@ -39,11 +39,4 @@ public class RouteController {
             logger.info("Getting all routes");
             return ResponseEntity.ok(routeService.getAllRoutes());
         }
-
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> deleteRouteById(@PathVariable Long id) {
-            logger.info("Deleting route by id");
-            routeService.deleteRouteById(id);
-            return ResponseEntity.noContent().build();
-        }
 }

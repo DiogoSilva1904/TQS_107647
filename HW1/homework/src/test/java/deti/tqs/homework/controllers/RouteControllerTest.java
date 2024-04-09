@@ -113,4 +113,14 @@ public class RouteControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    void whenSaveRoute_thenReturnRoute() throws Exception {
+        when(routeService.saveRoute(any(Route.class))).thenReturn(route1);
+        mockMvc.perform(post("/routes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtils.toJson(route1)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.stops", hasSize(5)));
+    }
+
 }

@@ -41,13 +41,6 @@ public class StopController {
             }
 
 
-            @DeleteMapping("/{id}")
-            public ResponseEntity<Void> deleteStopById(@PathVariable Long id) {
-                logger.info("Deleting stop by id");
-                stopService.deleteStopById(id);
-                return ResponseEntity.noContent().build();
-            }
-
             @GetMapping
             public ResponseEntity<List<Stop>> getAllStops() {
                 logger.info("Getting all stops");

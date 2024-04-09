@@ -34,94 +34,110 @@ public class DBInit {
             return;
         }
 
+        Route route1 = new Route();
+        //route1.setStops(List.of(stop1, stop2, stop3, stop4));
+        routeRepository.save(route1);
+
+        Route route2 = new Route();
+        //route2.setStops(List.of(stop5, stop6, stop7, stop8));
+        routeRepository.save(route2);
+
+        Route route3 = new Route();
+        //route3.setStops(List.of(stop9, stop10));
+        routeRepository.save(route3);
+
+        Route route4 = new Route();
+        //route4.setStops(List.of(stop11,stop12));
+        routeRepository.save(route4);
+
+        Route route5 = new Route();
+        //route5.setStops(List.of(stop13,stop14));
+        routeRepository.save(route5);
+
+        Route route6 = new Route();
+        //route6.setStops(List.of(stop15,stop16));
+        routeRepository.save(route6);
+
         Stop stop1 = new Stop();
         stop1.setName("Aveiro");
         stop1.setStopOrder(1);
+        stop1.setRoute(route1);
         stopRepository.save(stop1);
         Stop stop2 = new Stop();
+        stop2.setRoute(route1);
         stop2.setName("Coimbra");
         stop2.setStopOrder(2);
         stopRepository.save(stop2);
         Stop stop3 = new Stop();
         stop3.setName("Lisboa");
         stop3.setStopOrder(3);
+        stop3.setRoute(route1);
         stopRepository.save(stop3);
         Stop stop4 = new Stop();
         stop4.setName("Faro");
+        stop4.setRoute(route1);
         stop4.setStopOrder(4);
         stopRepository.save(stop4);
         Stop stop5 = new Stop();
         stop5.setName("Braga");
         stop5.setStopOrder(1);
+        stop5.setRoute(route2);
         stopRepository.save(stop5);
         Stop stop6 = new Stop();
         stop6.setName("Porto");
         stop6.setStopOrder(2);
+        stop6.setRoute(route2);
         stopRepository.save(stop6);
         Stop stop7 = new Stop();
         stop7.setName("Viseu");
         stop7.setStopOrder(3);
+        stop7.setRoute(route2);
         stopRepository.save(stop7);
         Stop stop8 = new Stop();
         stop8.setName("Guarda");
         stop8.setStopOrder(4);
+        stop8.setRoute(route2);
         stopRepository.save(stop8);
         Stop stop9 = new Stop();
         stop9.setName("Vila Real");
         stop9.setStopOrder(1);
+        stop9.setRoute(route3);
         stopRepository.save(stop9);
         Stop stop10 = new Stop();
         stop10.setName("Viana do Castelo");
         stop10.setStopOrder(2);
+        stop10.setRoute(route3);
         stopRepository.save(stop10);
         Stop stop11 = new Stop();
         stop11.setName("Portalegre");
         stop11.setStopOrder(1);
+        stop11.setRoute(route4);
         stopRepository.save(stop11);
         Stop stop12 = new Stop();
         stop12.setName("Évora");
         stop12.setStopOrder(2);
+        stop12.setRoute(route4);
         stopRepository.save(stop12);
         Stop stop13 = new Stop();
         stop13.setName("Beja");
         stop13.setStopOrder(1);
+        stop13.setRoute(route5);
         stopRepository.save(stop13);
         Stop stop14 = new Stop();
         stop14.setName("Setúbal");
         stop14.setStopOrder(2);
+        stop14.setRoute(route5);
         stopRepository.save(stop14);
         Stop stop15 = new Stop();
         stop15.setName("Aveiro");
         stop15.setStopOrder(1);
+        stop15.setRoute(route6);
         stopRepository.save(stop15);
         Stop stop16 = new Stop();
         stop16.setName("Coimbra");
         stop16.setStopOrder(2);
+        stop16.setRoute(route6);
         stopRepository.save(stop16);
-
-        Route route1 = new Route();
-        route1.setStops(List.of(stop1, stop2, stop3, stop4));
-        routeRepository.save(route1);
-
-        Route route2 = new Route();
-        route2.setStops(List.of(stop5, stop6, stop7, stop8));
-        routeRepository.save(route2);
-
-        Route route3 = new Route();
-        route3.setStops(List.of(stop9, stop10));
-        routeRepository.save(route3);
-
-        Route route4 = new Route();
-        route4.setStops(List.of(stop11,stop12));
-        routeRepository.save(route4);
-
-        Route route5 = new Route();
-        route5.setStops(List.of(stop13,stop14));
-        routeRepository.save(route5);
-
-        Route route6 = new Route();
-        route6.setStops(List.of(stop15,stop16));
-        routeRepository.save(route6);
 
         Trip trip1 = new Trip();
         trip1.setRoute(route1);

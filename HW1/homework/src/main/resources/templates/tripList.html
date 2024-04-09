@@ -45,7 +45,7 @@
         <td th:text="${trip.bus_number}">Bus Number</td>
         <td th:text="${trip.trip_type}">Trip Type</td>
         <td>
-            <a th:href="@{/trips/trip/{tripId}(tripId=${trip.id})}">Details</a>
+            <a id="button-details" th:href="@{/trips/trip/{tripId}(tripId=${trip.id})}">Details</a>
         </td>
     </tr>
     </tbody>

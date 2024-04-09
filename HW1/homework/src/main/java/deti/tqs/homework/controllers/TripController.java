@@ -1,6 +1,9 @@
 package deti.tqs.homework.controllers;
 
 import java.lang.invoke.MethodHandles;
+
+import deti.tqs.homework.models.Route;
+import deti.tqs.homework.models.Stop;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import deti.tqs.homework.models.Trip;
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -41,7 +46,13 @@ public class TripController {
         logger.info("Getting trip by id and showing the page with the details of the trip");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("trip", tripService.getTripById(id));
-        //ordenar stops aqui(ver depois)
+        Trip trip = tripService.getTripById(id);
+        Route route = trip.getRoute();
+        List<Stop> stops = route.getStops();
+        List<Stop> orderedStops = stops.stream()
+                .sorted(Comparator.comparingInt(Stop::getStopOrder))
+                .toList();
+        modelAndView.addObject("stops", orderedStops);
         modelAndView.setViewName("details");
         return modelAndView;
     }
@@ -50,13 +61,6 @@ public class TripController {
     public ResponseEntity<Trip> getTripsById(@PathVariable Long id) {
         logger.info("Getting trip by id");
         return ResponseEntity.ok(tripService.getTripById(id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTripById(@PathVariable Long id) {
-        logger.info("Deleting trip by id");
-        tripService.deleteTripById(id);
-        return ResponseEntity.noContent().build();
     }
 
     @GetMapping

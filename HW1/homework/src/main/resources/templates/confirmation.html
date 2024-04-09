@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation Details</title>
-    <link rel="stylesheet" href="confirmation.css">
+    <link rel="stylesheet" href="../static/confirmation.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        div {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        #end-text {
+            text-align: center;
+            margin-top: 50px;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
 <h1>Reservation Details</h1>
@@ -17,7 +53,7 @@
     <p>Trip ID: <span th:text="${reservation.trip.id}"></span></p>
 </div>
 
-<h1>Thank you for your purchase.</h1>
+<h1 id="end-text">Thank you for your purchase.</h1>
 
 </body>
 </html>

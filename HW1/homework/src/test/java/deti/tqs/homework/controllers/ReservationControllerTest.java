@@ -46,6 +46,7 @@ public class ReservationControllerTest {
     TripService tripService;
 
     Trip trip,trip1;
+    Reservation reservation;
 
     @BeforeEach
     void setUp() {
@@ -59,7 +60,7 @@ public class ReservationControllerTest {
         trip1.setDestination("Porto");
         trip1.setAvailableSeats(10);
         trip1.setTrip_type("IDA");
-        Reservation reservation = new Reservation();
+        reservation = new Reservation();
         reservation.setTrip(trip);
         reservation.setSeat("1A");
         reservation.setName("John Doe");
@@ -128,6 +129,13 @@ public class ReservationControllerTest {
                 .andExpect(jsonPath("$.name", is("Rafa")))
                 .andExpect(jsonPath("$.email", is("rafa@gmail.com")));
 
+    }
+
+    @Test
+    public void testSaveReservation() throws Exception {
+        when(reservationService.saveReservation(any(Reservation.class))).thenReturn(reservation);
+        mockMvc.perform(post("/reservations/save").contentType(MediaType.APPLICATION_JSON).content(TestUtils.toJson(reservation)))
+                .andExpect(status().isCreated());
     }
 
 }

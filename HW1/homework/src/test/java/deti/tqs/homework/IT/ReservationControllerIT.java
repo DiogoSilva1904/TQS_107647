@@ -47,10 +47,10 @@ public class ReservationControllerIT {
             }
 
             @Test
-            @Disabled
             public void testGetReservationById() {
-                UUID id = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
-                ResponseEntity<Reservation> response = restTemplate.getForEntity("http://localhost:"+ randomServerPort +"/reservations/" + id, Reservation.class);
+                UUID id = UUID.fromString("03db8c2d-01c5-4abd-865a-9485b08256e0");
+                ResponseEntity<Reservation> response = restTemplate.exchange(String.format("http://localhost:%s/reservations/%s", randomServerPort, id),
+                        HttpMethod.GET, null, Reservation.class);
 
                 assertEquals(HttpStatus.OK, response.getStatusCode());
                 assertEquals(id, response.getBody().getId());
