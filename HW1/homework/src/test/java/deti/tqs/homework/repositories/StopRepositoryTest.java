@@ -16,19 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 public class StopRepositoryTest {
-
         @Autowired
         TestEntityManager entityManager;
-
         @Autowired
         StopRepository stopRepository;
-
         @Autowired
         RouteRepository routeRepository;
 
         Stop stop1, stop2, stop3;
         Route route1,route2;
-
         @BeforeEach
         void setUp() {
             route1 = new Route();

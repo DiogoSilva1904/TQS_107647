@@ -19,13 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(CurrencyConverterController.class)
 public class CurrencyControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private ApiService apiService;
-
     @Test
     public void testExchange() throws Exception {
         Map<String, Object> mockExchangeRates = Map.of(
@@ -37,7 +35,6 @@ public class CurrencyControllerTest {
                         "GBP", 0.9
                 )
         );
-
         when(apiService.getExchangeRates()).thenReturn(mockExchangeRates);
 
         mockMvc.perform(get("/converter/exchange"))

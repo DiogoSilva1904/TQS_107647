@@ -18,6 +18,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 public class MakeReservation {
+
     private Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private WebDriver driver;

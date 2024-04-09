@@ -14,10 +14,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ApiServiceTest {
-
     @Mock
     private RestTemplate restTemplate;
-
     @Test
     public void testGetExchangeRates() {
         Map<String, Object> mockResponse = Map.of(
@@ -29,10 +27,8 @@ public class ApiServiceTest {
                         "GBP", 0.9
                 )
         );
-
         when(restTemplate.getForObject("https://api.frankfurter.app/latest", Map.class))
                 .thenReturn(mockResponse);
-
         ApiService apiService = new ApiService(restTemplate);
         Map<String, Object> exchangeRates = apiService.getExchangeRates();
         verify(restTemplate, times(1)).getForObject("https://api.frankfurter.app/latest", Map.class);

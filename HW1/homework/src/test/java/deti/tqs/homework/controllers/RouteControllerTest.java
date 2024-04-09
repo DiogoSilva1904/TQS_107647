@@ -38,22 +38,17 @@ import deti.tqs.homework.controllers.TestUtils;
 public class RouteControllerTest {
     @Autowired
     MockMvc mockMvc;
-
     @MockBean
     RouteService routeService;
-
     @MockBean
     TripService tripService;
-
     @MockBean
     StopService stopService;
-
     Route route1,route2;
     Trip trip1,trip2;
     Stop stop1,stop2,stop3,stop4,stop5,stop6,stop7,stop8,stop9,stop10;
-
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         stop1 = new Stop();
         stop1.setName("Aveiro");
         stop1.setStopOrder(1);
@@ -95,11 +90,9 @@ public class RouteControllerTest {
         route2.setStops(Arrays.asList(stop6, stop7, stop8, stop9, stop10));
         route2.setTrips(Arrays.asList(trip1, trip2));
     }
-    
     @Test
     void whenGetAllRoutes_thenReturnAllRoutes() throws Exception {
         when(routeService.getAllRoutes()).thenReturn(Arrays.asList(route1, route2));
-
         mockMvc.perform(get("/routes"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));

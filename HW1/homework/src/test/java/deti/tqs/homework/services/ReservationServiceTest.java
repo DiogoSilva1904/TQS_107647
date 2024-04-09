@@ -27,13 +27,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class ReservationServiceTest {
     @Mock
     private ReservationRepository reservationRepository;
-
     @Mock
     private TripRepository tripRepository;
-
     @InjectMocks
     private ReservationService reservationService;
-
     Reservation reservation1, reservation2, reservation3;
     Trip trip1, trip2;
     @BeforeEach
@@ -62,7 +59,6 @@ public class ReservationServiceTest {
         reservation3.setEmail("diogo@gmail.com");
         reservation3.setTrip(trip1);
     }
-
     @Test
     public void whenValidReservation_thenReservationShouldBeSaved() {
         when(reservationRepository.save(any(Reservation.class))).thenReturn(reservation2);

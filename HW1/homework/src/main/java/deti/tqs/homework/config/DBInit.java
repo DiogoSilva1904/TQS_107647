@@ -34,38 +34,38 @@ public class DBInit {
             return;
         }
 
+        String aveiro ="Aveiro";
+        String coimbra = "Coimbra";
+        String braga = "Braga";
+        String faro = "Faro";
+        String guarda = "Guarda";
+        String vilareal = "Vila Real";
         Route route1 = new Route();
-        //route1.setStops(List.of(stop1, stop2, stop3, stop4));
         routeRepository.save(route1);
 
         Route route2 = new Route();
-        //route2.setStops(List.of(stop5, stop6, stop7, stop8));
         routeRepository.save(route2);
 
         Route route3 = new Route();
-        //route3.setStops(List.of(stop9, stop10));
         routeRepository.save(route3);
 
         Route route4 = new Route();
-        //route4.setStops(List.of(stop11,stop12));
         routeRepository.save(route4);
 
         Route route5 = new Route();
-        //route5.setStops(List.of(stop13,stop14));
         routeRepository.save(route5);
 
         Route route6 = new Route();
-        //route6.setStops(List.of(stop15,stop16));
         routeRepository.save(route6);
 
         Stop stop1 = new Stop();
-        stop1.setName("Aveiro");
+        stop1.setName(aveiro);
         stop1.setStopOrder(1);
         stop1.setRoute(route1);
         stopRepository.save(stop1);
         Stop stop2 = new Stop();
         stop2.setRoute(route1);
-        stop2.setName("Coimbra");
+        stop2.setName(coimbra);
         stop2.setStopOrder(2);
         stopRepository.save(stop2);
         Stop stop3 = new Stop();
@@ -74,12 +74,12 @@ public class DBInit {
         stop3.setRoute(route1);
         stopRepository.save(stop3);
         Stop stop4 = new Stop();
-        stop4.setName("Faro");
+        stop4.setName(faro);
         stop4.setRoute(route1);
         stop4.setStopOrder(4);
         stopRepository.save(stop4);
         Stop stop5 = new Stop();
-        stop5.setName("Braga");
+        stop5.setName(braga);
         stop5.setStopOrder(1);
         stop5.setRoute(route2);
         stopRepository.save(stop5);
@@ -94,12 +94,12 @@ public class DBInit {
         stop7.setRoute(route2);
         stopRepository.save(stop7);
         Stop stop8 = new Stop();
-        stop8.setName("Guarda");
+        stop8.setName(guarda);
         stop8.setStopOrder(4);
         stop8.setRoute(route2);
         stopRepository.save(stop8);
         Stop stop9 = new Stop();
-        stop9.setName("Vila Real");
+        stop9.setName(vilareal);
         stop9.setStopOrder(1);
         stop9.setRoute(route3);
         stopRepository.save(stop9);
@@ -129,74 +129,77 @@ public class DBInit {
         stop14.setRoute(route5);
         stopRepository.save(stop14);
         Stop stop15 = new Stop();
-        stop15.setName("Aveiro");
+        stop15.setName(aveiro);
         stop15.setStopOrder(1);
         stop15.setRoute(route6);
         stopRepository.save(stop15);
         Stop stop16 = new Stop();
-        stop16.setName("Coimbra");
+        stop16.setName(coimbra);
         stop16.setStopOrder(2);
         stop16.setRoute(route6);
         stopRepository.save(stop16);
 
+        String idavolta = "IDA/VOLTA";
+        String ida = "IDA";
+        String bus = "A6";
         Trip trip1 = new Trip();
         trip1.setRoute(route1);
         trip1.setDepartureTime(LocalDateTime.parse("2024-04-08T08:00:00"));
         trip1.setArrivalTime(LocalDateTime.parse("2024-04-08T19:45:00"));
-        trip1.setOrigin("Aveiro");
-        trip1.setDestination("Faro");
+        trip1.setOrigin(aveiro);
+        trip1.setDestination(faro);
         trip1.setPrice(50.0);
         trip1.setAvailableSeats(50);
         trip1.setBus_number("A1");
-        trip1.setTrip_type("IDA");
+        trip1.setTrip_type(ida);
         tripRepository.save(trip1);
 
         Trip trip2 = new Trip();
         trip2.setRoute(route2);
         trip2.setDepartureTime(LocalDateTime.parse("2024-04-08T08:00:00"));
         trip2.setArrivalTime(LocalDateTime.parse("2024-04-08T17:00:00"));
-        trip2.setOrigin("Braga");
-        trip2.setDestination("Guarda");
+        trip2.setOrigin(braga);
+        trip2.setDestination(guarda);
         trip2.setPrice(60.0);
         trip2.setAvailableSeats(30);
         trip2.setBus_number("A2");
-        trip2.setTrip_type("IDA/VOLTA");
+        trip2.setTrip_type(idavolta);
         tripRepository.save(trip2);
 
         Trip trip3 = new Trip();
         trip3.setRoute(route3);
         trip3.setDepartureTime(LocalDateTime.parse("2024-04-08T07:30:00"));
         trip3.setArrivalTime(LocalDateTime.parse("2024-04-08T15:00:00"));
-        trip3.setOrigin("Vila Real");
+        trip3.setOrigin(vilareal);
         trip3.setDestination("Viana do Castelo");
         trip3.setPrice(30.0);
         trip3.setAvailableSeats(40);
         trip3.setBus_number("A3");
-        trip3.setTrip_type("IDA");
+        trip3.setTrip_type(ida);
         tripRepository.save(trip3);
 
         Trip trip4 = new Trip();
         trip4.setRoute(route1);
         trip4.setDepartureTime(LocalDateTime.parse("2024-04-10T10:00:00"));
         trip4.setArrivalTime(LocalDateTime.parse("2024-04-10T21:50:00"));
-        trip4.setOrigin("Aveiro");
+        trip4.setOrigin(aveiro);
         trip4.setDestination("Faro");
         trip4.setPrice(80.0);
         trip4.setAvailableSeats(50);
         trip4.setBus_number("A1");
-        trip4.setTrip_type("IDA/VOLTA");
+        trip4.setTrip_type(idavolta);
         tripRepository.save(trip4);
 
         Trip trip5 = new Trip();
         trip5.setRoute(route2);
         trip5.setDepartureTime(LocalDateTime.parse("2024-04-10T10:00:00"));
         trip5.setArrivalTime(LocalDateTime.parse("2024-04-10T17:35:00"));
-        trip5.setOrigin("Braga");
-        trip5.setDestination("Guarda");
+        trip5.setOrigin(braga);
+        trip5.setDestination(guarda);
         trip5.setPrice(90.0);
         trip5.setAvailableSeats(30);
         trip5.setBus_number("A2");
-        trip5.setTrip_type("IDA");
+        trip5.setTrip_type(ida);
         tripRepository.save(trip5);
 
         Trip trip6 = new Trip();
@@ -208,7 +211,7 @@ public class DBInit {
         trip6.setPrice(40.0);
         trip6.setAvailableSeats(40);
         trip6.setBus_number("A3");
-        trip6.setTrip_type("IDA/VOLTA");
+        trip6.setTrip_type(idavolta);
         tripRepository.save(trip6);
 
         Trip trip7 = new Trip();
@@ -220,7 +223,7 @@ public class DBInit {
         trip7.setPrice(40.0);
         trip7.setAvailableSeats(40);
         trip7.setBus_number("A4");
-        trip7.setTrip_type("IDA/VOLTA");
+        trip7.setTrip_type(idavolta);
         tripRepository.save(trip7);
 
         Trip trip8 = new Trip();
@@ -232,31 +235,31 @@ public class DBInit {
         trip8.setPrice(40.0);
         trip8.setAvailableSeats(40);
         trip8.setBus_number("A5");
-        trip8.setTrip_type("IDA/VOLTA");
+        trip8.setTrip_type(idavolta);
         tripRepository.save(trip8);
 
         Trip trip9 = new Trip();
         trip9.setRoute(route6);
         trip9.setDepartureTime(LocalDateTime.parse("2024-04-10T10:00:00"));
         trip9.setArrivalTime(LocalDateTime.parse("2024-04-10T12:00:00"));
-        trip9.setOrigin("Aveiro");
-        trip9.setDestination("Coimbra");
+        trip9.setOrigin(aveiro);
+        trip9.setDestination(coimbra);
         trip9.setPrice(40.0);
         trip9.setAvailableSeats(40);
-        trip9.setBus_number("A6");
-        trip9.setTrip_type("IDA/VOLTA");
+        trip9.setBus_number(bus);
+        trip9.setTrip_type(idavolta);
         tripRepository.save(trip9);
 
         Trip trip10 = new Trip();
         trip10.setRoute(route6);
         trip10.setDepartureTime(LocalDateTime.parse("2024-04-10T08:00:00"));
         trip10.setArrivalTime(LocalDateTime.parse("2024-04-10T09:30:00"));
-        trip10.setOrigin("Aveiro");
-        trip10.setDestination("Coimbra");
+        trip10.setOrigin(aveiro);
+        trip10.setDestination(coimbra);
         trip10.setPrice(40.0);
         trip10.setAvailableSeats(0);
-        trip10.setBus_number("A6");
-        trip10.setTrip_type("IDA");
+        trip10.setBus_number(bus);
+        trip10.setTrip_type(ida);
         tripRepository.save(trip10);
 
         Trip trip11 = new Trip();
@@ -267,8 +270,8 @@ public class DBInit {
         trip11.setDestination("Setúbal");
         trip11.setPrice(40.0);
         trip11.setAvailableSeats(40);
-        trip11.setBus_number("A6");
-        trip11.setTrip_type("IDA");
+        trip11.setBus_number(bus);
+        trip11.setTrip_type(ida);
         tripRepository.save(trip11);
 
         Trip trip12 = new Trip();
@@ -279,8 +282,8 @@ public class DBInit {
         trip12.setDestination("Évora");
         trip12.setPrice(40.0);
         trip12.setAvailableSeats(40);
-        trip12.setBus_number("A6");
-        trip12.setTrip_type("IDA");
+        trip12.setBus_number(bus);
+        trip12.setTrip_type(ida);
         tripRepository.save(trip12);
 
         Reservation reservation1 = new Reservation();
