@@ -4,17 +4,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
-@AllArgsConstructor
 @RequestMapping("/converter")
 public class CurrencyConverterController {
 
-    @Autowired
-    private ApiService apiService;
+    private final ApiService apiService;
+
+    public CurrencyConverterController(ApiService apiService) {
+        this.apiService = apiService;
+    }
 
     @GetMapping("/exchange")
-    public ExchangeRatesResponse exchange() {
-        //return apiService.getExchangeRates();
-        return null;
+    public Map<String,Object> exchange() {
+        return apiService.getExchangeRates();
     }
 }
